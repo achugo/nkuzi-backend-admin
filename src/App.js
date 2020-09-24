@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./style.css";
+import axios from "axios";
 
 function App() {
   const [categories, setCategories] = useState(null);
@@ -419,7 +420,7 @@ function App() {
         option3: option3,
         option4audio: audioUrlOption4,
         option4: option4,
-        type: optionTypeVal,
+        type: "toEnglish",
         lesson: lesson._id,
         study: selectedStudy._id,
       };
@@ -438,7 +439,7 @@ function App() {
         optionIII: option3,
         optionIVaudio: audioUrlOption4,
         optionIV: option4,
-        type: optionTypeVal,
+        type: "match",
         lesson: lesson._id,
         study: selectedStudy._id,
       };
@@ -450,7 +451,7 @@ function App() {
         audioUrl: audioCore,
         correctSentence: correct_order,
         words: match_order,
-        type: optionTypeVal,
+        type: "sentence",
         lesson: lesson._id,
         study: selectedStudy._id,
       };
@@ -464,7 +465,7 @@ function App() {
         optionB: option2,
         optionBImage: imgUrlOption2,
         optionC: option3,
-        type: optionTypeVal,
+        type: "toIgbo",
         optionCImage: imgUrlOption3,
         optionD: option4,
         optionDImage: imgUrlOption4,
@@ -477,17 +478,15 @@ function App() {
     //lesson;
     console.log(data);
 
-    fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/test/",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    )
-      .then((response) => response.json())
+    axios({
+      method: "post",
+      url:
+        "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/test/",
+      data: data,
+    })
       .then((result) => {
         console.log("Success:", result);
-        alert(result.message);
+        alert("upload successful");
       })
       .catch((error) => {
         console.error("Error:", error);
