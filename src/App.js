@@ -7,7 +7,9 @@ import axios from "axios";
 function App() {
   const [categories, setCategories] = useState(null);
   const [subtopics, setSubTopics] = useState(null);
+  const [onelesson, setOneLesson] = useState(null);
   const [studies, setStudies] = useState(null);
+  const [topicAction, setTopicAction] = useState(null);
   const [selectedStudy, setSelectedStudy] = useState(null);
   const [audioCore, setAudioCore] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
@@ -31,6 +33,11 @@ function App() {
   const [question_match, setQuestionMatch] = useState("");
   const [match_order, setMatchOrder] = useState("");
   const [correct_order, setCorrectMatchOrder] = useState("");
+  const [topicname, setSubTopicName] = useState(null);
+  const [topictype, setSubTopicType] = useState(null);
+  const [topicform, setSubTopicForm] = useState(null);
+  const [premium_content, setSubTopicPcontent] = useState(null);
+  const [category, setTopic] = useState(null);
 
   useEffect(() => {
     loadCategories();
@@ -113,15 +120,49 @@ function App() {
       });
   };
 
+  const loadOneLesson = (id) => {
+    fetch(`https://nkuziigbo.herokuapp.com/igboapp/api/lesson/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        let lesson = data.data;
+        setOneLesson(lesson);
+      });
+  };
+
   const handleCategoryChange = (e, data) => {
+    setTopicAction(null);
+    setOneLesson(null);
+    setStudies(null);
+    setSelectedStudy(null);
     let result = data.find((payload) => payload.name == e.target.value);
     loadSubTopics(result._id);
+    setTopic(result._id);
   };
 
   const handleTopicChange = (e, data) => {
     let result = data.find((payload) => payload.name == e.target.value);
     setLesson(result);
     loadStudy(result._id);
+  };
+
+  const handleTopicUpdate = (e, data) => {
+    let result = data.find((payload) => payload.name == e.target.value);
+    loadOneLesson(result._id);
+  };
+
+  const handleTopicAction = (e, data) => {
+    if (e.target.value == "add_subtopic") {
+      setOneLesson(null);
+      setTopicAction(e.target.value);
+    }
+    if (e.target.value == "show_subtopic") {
+      setOneLesson(null);
+      setTopicAction(e.target.value);
+    }
+    if (e.target.value == "update_subtopic") {
+      setOneLesson(null);
+      setTopicAction(e.target.value);
+    }
   };
 
   const handleStudySelect = (e, data) => {
@@ -410,6 +451,22 @@ function App() {
     setQuestionMatch(e.target.value);
   };
 
+  const addSubTopicName = (e) => {
+    setSubTopicName(e.target.value);
+  };
+
+  const addSubTopicType = (e) => {
+    setSubTopicType(e.target.value);
+  };
+
+  const addSubTopicForm = (e) => {
+    setSubTopicForm(e.target.value);
+  };
+
+  const addSubTopicPcontent = (e) => {
+    setSubTopicPcontent(e.target.value);
+  };
+
   const postQuestion = () => {
     let data = {};
     if (optionTypeVal == "match1") {
@@ -499,6 +556,59 @@ function App() {
       });
   };
 
+  const postSubtopic = () => {
+    let data = {
+      name: topicname,
+      type: topictype,
+      form: topicform,
+      premium_content: premium_content,
+      category: category,
+    };
+
+    //lesson;
+    console.log(data);
+
+    axios({
+      method: "post",
+      url:
+        "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/lesson/",
+      data: data,
+    })
+      .then((result) => {
+        console.log("Success:", result);
+        alert("sub topic upload successful");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const updateSubtopic = (id) => {
+    let data = {
+      name: topicname,
+      type: topictype,
+      form: topicform,
+      premium_content: premium_content,
+      category: category,
+    };
+
+    //lesson;
+    console.log(data);
+
+    axios({
+      method: "put",
+      url: `https://nkuziigbo.herokuapp.com/igboapp/api/lesson/${id}`,
+      data: data,
+    })
+      .then((result) => {
+        console.log("Success:", result);
+        alert("sub topic upload successful");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   console.log("option type val", optionTypeVal);
 
   return (
@@ -522,6 +632,19 @@ function App() {
           <div>
             {subtopics && (
               <>
+                <label>Choose an action</label>
+                <select onChange={(e) => handleTopicAction(e, subtopics)}>
+                  <option>Select action</option>
+                  <option key="update_subtopic">update_subtopic</option>
+                  <option key="show_subtopic">show_subtopic</option>
+                  <option key="add_subtopic">add_subtopic</option>
+                </select>
+              </>
+            )}
+          </div>
+          <div>
+            {topicAction == "show_subtopic" && (
+              <>
                 <label>Choose a subtopic</label>
                 <select onChange={(e) => handleTopicChange(e, subtopics)}>
                   <option>Select subtopic</option>
@@ -532,6 +655,97 @@ function App() {
               </>
             )}
           </div>
+          <div>
+            {topicAction == "add_subtopic" && (
+              <>
+                <div className="section__wrap">
+                  <input
+                    type="text"
+                    placeholder="name"
+                    onChange={(e) => setSubTopicName(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="type"
+                    onChange={(e) => setSubTopicType(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="form"
+                    onChange={(e) => setSubTopicForm(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="premium_content"
+                    onChange={(e) => setSubTopicPcontent(e.target.value)}
+                  />
+                  <div className="text-center">
+                    <button onClick={postSubtopic}>POST SUB TOPIC</button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+          <div>
+            {topicAction == "update_subtopic" && (
+              <>
+                <label>Choose a subtopic to update</label>
+                <select onChange={(e) => handleTopicUpdate(e, subtopics)}>
+                  <option>Select subtopic</option>
+                  {subtopics.map((item) => {
+                    return <option key={item.name}>{item.name}</option>;
+                  })}
+                </select>
+              </>
+            )}
+          </div>
+          <div>
+            {onelesson && (
+              <>
+                <div className="section__wrap">
+                  <input
+                    type="text"
+                    placeholder={onelesson.name}
+                    onChange={(e) => setSubTopicName(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder={onelesson.type}
+                    onChange={(e) => setSubTopicType(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder={onelesson.form}
+                    onChange={(e) => setSubTopicForm(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder={onelesson.premium_content ? "true" : "false"}
+                    onChange={(e) => setSubTopicPcontent(e.target.value)}
+                  />
+  
+                  <div className="text-center">
+                    <button onClick={updateSubtopic(onelesson._id)}>
+                      UPDATE SUB TOPIC
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+          {/* <div>
+            {subtopics && (
+              <>
+                <label>Choose a subtopic</label>
+                <select onChange={(e) => handleTopicChange(e, subtopics)}>
+                  <option>Select subtopic</option>
+                  {subtopics.map((item) => {
+                    return <option key={item.name}>{item.name}</option>;
+                  })}
+                </select>
+              </>
+            )}
+          </div> */}
 
           <div>
             {studies && (
