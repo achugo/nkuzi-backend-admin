@@ -4,26 +4,31 @@ import "./App.css";
 import "./style.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import CKEditor from "react-ckeditor-component";
 
-function EditQuestion(props) {
+function EditStudy(props) {
   const [categories, setCategories] = useState(null);
   const [subtopics, setSubTopics] = useState(null);
   const [studies, setStudies] = useState(null);
   const [selectedStudy, setSelectedStudy] = useState(null);
-  const [audioCore, setAudioCore] = useState("");
-  const [correctAnswer, setCorrectAnswer] = useState("");
-  const [audioUrl, setAudioUrl] = useState("");
-  const [audioUrlOption2, setOption2Audio] = useState("");
+  const [studyno, setStudyNo] = useState("");
+  const [description, setDescription] = useState("");
+  const [igbo, setIgbo] = useState("");
+  const [picture, setPicture] = useState("");
+  const [voicing, setVoicing] = useState("");
 
   const [lesson, setLesson] = useState("");
-  const [question_match, setQuestionMatch] = useState("");
-  const [match_order, setMatchOrder] = useState("");
-  const [correct_order, setCorrectMatchOrder] = useState("");
 
   useEffect(() => {
     loadCategories();
   }, []);
+  const onBlur = (evt) => {
+    console.log("onBlur event called with event info: ", evt);
+  };
 
+  const afterPaste = (evt) => {
+    console.log("afterPaste event called with event info: ", evt);
+  };
   const loadCategories = () => {
     fetch("https://nkuziigbo.herokuapp.com/igboapp/api/category/")
       .then((response) => response.json())
@@ -42,7 +47,7 @@ function EditQuestion(props) {
       });
   };
 
-  //5f4a9f1dad39cd0004947959
+  //   5f4a9f1dad39cd0004947959
   const loadStudy = (id) => {
     fetch(`https://nkuziigbo.herokuapp.com/igboapp/api/study/allstudy/${id}`)
       .then((response) => response.json())
@@ -67,20 +72,41 @@ function EditQuestion(props) {
     console.log(data, e.target.value);
     let result = data.find((payload) => payload.description == e.target.value);
     setSelectedStudy(result);
+    setStudyNo(result.study_no);
+    setDescription(result.description);
+    setDescription(result.description);
+    setIgbo(result.igbo);
+    setPicture(result.picture);
+    setVoicing(result.voicing);
     console.log(result);
   };
 
-  const handleWordArrangement = (e) => {
-    let words = e.target.value.replace(/\s/g, "");
-    setMatchOrder(words.split(","));
+  const handleStudyNoChange = (evt) => {
+    const newContent = evt.editor.getData();
+    setStudyNo(newContent);
   };
 
-  const handleCorrectArrangement = (e) => {
-    let words = e.target.value.replace(/\s/g, "");
-    setCorrectMatchOrder(words.split(","));
+  const handleDescriptionChange = (evt) => {
+    const newContent = evt.editor.getData();
+    setDescription(newContent);
   };
 
-  const uploadAudioForAnswerIguess = (e) => {
+  const handleIgboChange = (evt) => {
+    const newContent = evt.editor.getData();
+    setIgbo(newContent);
+  };
+
+  const handlePictureChange = (evt) => {
+    const newContent = evt.editor.getData();
+    setPicture(newContent);
+  };
+
+  const handleVoicingChange = (evt) => {
+    const newContent = evt.editor.getData();
+    setVoicing(newContent);
+  };
+
+  const uploadImage = (e) => {
     let upload = e.target.files[0];
     console.log(upload);
 
@@ -89,7 +115,7 @@ function EditQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -98,14 +124,14 @@ function EditQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioCore(result.data);
+        setPicture(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
-  const uploadAudioForOption1 = (e) => {
+  const uploadAudio = (e) => {
     let upload = e.target.files[0];
     console.log(upload);
 
@@ -114,7 +140,7 @@ function EditQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -123,42 +149,37 @@ function EditQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioUrl(result.data);
+        setVoicing(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
-  const uploadAudioForOption2 = (e) => {
-    let upload = e.target.files[0];
-    console.log(upload);
+  const updateStudy = () => {
+    let data = {
+      study_no: studyno,
+      description: description,
+      igbo: igbo,
+      picture: picture,
+      voicing: voicing,
+    };
 
-    const formData = new FormData();
-
-    formData.append("file", upload);
-
-    fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
-      .then((response) => response.json())
+    //lesson;
+    console.log(data);
+    //https://nkuziigbo.herokuapp.com/igboapp/api/test/5f4ac17d8ca10b00047d29e1
+    axios({
+      method: "put",
+      url: `https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/study/${lesson._id}`,
+      data: data,
+    })
       .then((result) => {
         console.log("Success:", result);
-        setOption2Audio(result.data);
+        alert("study update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  };
-
-  const pushToQuestion = (data) => {
-    localStorage.setItem("data__", JSON.stringify(selectedStudy));
-    localStorage.setItem("lesson__", JSON.stringify(lesson));
-    props.history.push(`/edit/${data}`);
   };
 
   const pushEdit = () => {
@@ -175,7 +196,7 @@ function EditQuestion(props) {
     <div className="App">
       <div className="text-center">
         <h2>NKUZI IGBO</h2>
-        <h2>SELECT QUESTION TO EDIT</h2>
+        <h2>SELECT SUBTOPIC TO EDIT</h2>
         <button onClick={pushEdit}>Edit question</button>
         <button onClick={pushSubTopic}>Edit Sub Topic</button>
         <button onClick={pushStudy}>Edit Study</button>
@@ -206,7 +227,6 @@ function EditQuestion(props) {
               </>
             )}
           </div>
-
           <div>
             {studies && (
               <>
@@ -223,37 +243,84 @@ function EditQuestion(props) {
               </>
             )}
           </div>
-          {studies && (
+          {/* {studies && (
             <>
               <span>studies</span>
             </>
-          )}
+          )} */}
         </div>
         <div className="col-md-8">
-          <>
-            {selectedStudy && (
-              <>
-                {selectedStudy.test.length > 0 && (
-                  <>
-                    {selectedStudy.test.map((item, index) => (
-                      <button onClick={() => pushToQuestion(item)}>{`Question ${
-                        index + 1
-                      }`}</button>
-                    ))}
-                  </>
+          {selectedStudy && (
+            <div className="row">
+              <div className="col-md-6 align__left ">
+                <label>Study No</label>
+                <input
+                  type="number"
+                  value={studyno}
+                  onChange={handleStudyNoChange}
+                />
+                {/* <CKEditor
+                  activeClass="p10"
+                  content={studyno}
+                  events={{
+                    blur: onBlur,
+                    afterPaste: afterPaste,
+                    change: handleStudyNoChange,
+                  }} */}
+                {/* /> */}
+              </div>
+
+              <div className="col-md-6 align__left ">
+                <label>Description</label>
+                <CKEditor
+                  activeClass="p10"
+                  content={description}
+                  events={{
+                    blur: onBlur,
+                    afterPaste: afterPaste,
+                    change: handleDescriptionChange,
+                  }}
+                />
+              </div>
+
+              <div className="col-md-6 align__left ">
+                <label>Igbo</label>
+                <CKEditor
+                  activeClass="p10"
+                  content={igbo}
+                  events={{
+                    blur: onBlur,
+                    afterPaste: afterPaste,
+                    change: handleIgboChange,
+                  }}
+                />
+              </div>
+
+              <div className="col-md-6 align__left ">
+                <label>Picture</label>
+                <input type="file" onChange={(e) => uploadImage(e)} />
+                {picture && <img src={picture} alt="img uploaded" />}
+              </div>
+
+              <div className="col-md-6 align__left ">
+                <label>Voicing</label>
+                <input type="file" onChange={(e) => uploadAudio(e)} />
+                {voicing && (
+                  <audio controls>
+                    <source src={voicing} />
+                  </audio>
                 )}
-                {selectedStudy.test.length == 0 && (
-                  <>
-                    <div>No question in this test</div>
-                  </>
-                )}
-              </>
-            )}
-          </>
+              </div>
+
+              <div className="text-center">
+                <button onClick={updateStudy}>UPDATE STUDY</button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default withRouter(EditQuestion);
+export default withRouter(EditStudy);

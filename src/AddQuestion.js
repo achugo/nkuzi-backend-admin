@@ -162,7 +162,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -171,7 +171,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioCore(result.data);
+        setAudioCore(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -187,7 +187,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -196,7 +196,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioUrl(result.data);
+        setAudioUrl(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -212,7 +212,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -221,7 +221,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setImgUrl(result.data);
+        setImgUrl(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -237,7 +237,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -246,7 +246,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2Audio(result.data);
+        setOption2Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -262,7 +262,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -271,7 +271,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2img(result.data);
+        setOption2img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -287,7 +287,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -296,7 +296,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3Audio(result.data);
+        setOption3Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -312,7 +312,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -321,7 +321,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3img(result.data);
+        setOption3img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -337,7 +337,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -346,7 +346,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4Audio(result.data);
+        setOption4Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -362,7 +362,7 @@ function AddQuestion(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -371,7 +371,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4img(result.data);
+        setOption4img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -499,7 +499,7 @@ function AddQuestion(props) {
     axios({
       method: "post",
       url:
-        "https://fierce-shore-33740.herokuapp.com/Infomallapi.infomall.ng/api/emails/send",
+        "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/test/",
       data: data,
     })
       .then((result) => {
@@ -515,6 +515,12 @@ function AddQuestion(props) {
 
   const pushEdit = () => {
     props.history.push("/edit");
+  };
+  const pushSubTopic = () => {
+    props.history.push("/subtopic");
+  };
+  const pushStudy = () => {
+    props.history.push("/study");
   };
 
   const onChange = (evt) => {
@@ -536,8 +542,11 @@ function AddQuestion(props) {
   return (
     <div className="App">
       <div className="text-center">
-        <h2>ADD QUESTION NKUZI IGBO</h2>
+        <h2>NKUZI IGBO</h2>
+        <h2>ADD QUESTION</h2>
         <button onClick={pushEdit}>Edit question</button>
+        <button onClick={pushSubTopic}>Edit Sub Topic</button>
+        <button onClick={pushStudy}>Edit Study</button>
       </div>
 
       <div className="row">

@@ -82,10 +82,24 @@ function AddStudy(props) {
     console.log("afterPaste event called with event info: ", evt);
   };
 
+  const pushEdit = () => {
+    props.history.push("/edit");
+  };
+  const pushSubTopic = () => {
+    props.history.push("/subtopic");
+  };
+  const pushStudy = () => {
+    props.history.push("/study");
+  };
+
   return (
     <div className="App">
       <div className="text-center">
-        <h2>SELECT QUESTION TO EDIT NKUZI IGBO</h2>
+        <h2>NKUZI IGBO</h2>
+        <h2>SELECT QUESTION TO EDIT</h2>
+        <button onClick={pushEdit}>Edit question</button>
+        <button onClick={pushSubTopic}>Edit Sub Topic</button>
+        <button onClick={pushStudy}>Edit Study</button>
       </div>
       <div className="row">
         <div className="col-md-4 align__left">

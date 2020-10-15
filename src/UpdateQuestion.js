@@ -482,6 +482,7 @@ function UpdateQuestion() {
   return (
     <div className="App">
       <div className="text-center">
+        <h2>NKUZI IGBO</h2>
         <h2>THIS MODULE IS TO EDIT A SINGLE QUESTION</h2>
       </div>
       <div className="row">
