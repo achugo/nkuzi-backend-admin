@@ -139,7 +139,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -148,7 +148,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioCore(result.data);
+        setAudioCore(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -164,7 +164,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -173,7 +173,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioUrl(result.data);
+        setAudioUrl(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -189,7 +189,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -198,7 +198,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setImgUrl(result.data);
+        setImgUrl(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -214,7 +214,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -223,7 +223,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2Audio(result.data);
+        setOption2Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -239,7 +239,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -248,7 +248,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2img(result.data);
+        setOption2img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -264,7 +264,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -273,7 +273,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3Audio(result.data);
+        setOption3Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -289,7 +289,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -298,7 +298,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3img(result.data);
+        setOption3img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -314,7 +314,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -323,7 +323,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4Audio(result.data);
+        setOption4Audio(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -339,7 +339,7 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/upload/file",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
       {
         method: "POST",
         body: formData,
@@ -348,7 +348,7 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4img(result.data);
+        setOption4img(result.data.name);
       })
       .catch((error) => {
         console.error("Error:", error);
