@@ -139,13 +139,12 @@ function UpdateQuestion() {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
         body: formData,
       }
     )
-      .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
         setAudioCore(result.data.name);
