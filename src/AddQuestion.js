@@ -171,7 +171,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioCore(result.data.name);
+        setAudioCore("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -196,7 +196,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioUrl(result.data.name);
+        setAudioUrl("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -221,7 +221,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setImgUrl(result.data.name);
+        setImgUrl("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -246,7 +246,9 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2Audio(result.data.name);
+        setOption2Audio(
+          "https://infomall-001-site1.etempurl.com/" + result.name
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -271,7 +273,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2img(result.data.name);
+        setOption2img("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -296,7 +298,9 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3Audio(result.data.name);
+        setOption3Audio(
+          "https://infomall-001-site1.etempurl.com/" + result.name
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -321,7 +325,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption3img(result.data.name);
+        setOption3img("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -346,7 +350,9 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4Audio(result.data.name);
+        setOption4Audio(
+          "https://infomall-001-site1.etempurl.com/" + result.name
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -371,7 +377,7 @@ function AddQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4img(result.data.name);
+        setOption4img("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);

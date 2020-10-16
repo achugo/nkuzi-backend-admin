@@ -124,7 +124,7 @@ function EditStudy(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setPicture(result.data.name);
+        setPicture("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -149,7 +149,7 @@ function EditStudy(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setVoicing(result.data.name);
+        setVoicing("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);

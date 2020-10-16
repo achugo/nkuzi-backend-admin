@@ -98,7 +98,7 @@ function EditQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioCore(result.data.name);
+        setAudioCore("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -123,7 +123,7 @@ function EditQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setAudioUrl(result.data.name);
+        setAudioUrl("https://infomall-001-site1.etempurl.com/" + result.name);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -148,7 +148,9 @@ function EditQuestion(props) {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption2Audio(result.data.name);
+        setOption2Audio(
+          "https://infomall-001-site1.etempurl.com/" + result.name
+        );
       })
       .catch((error) => {
         console.error("Error:", error);
