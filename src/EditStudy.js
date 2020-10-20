@@ -18,6 +18,7 @@ function EditStudy(props) {
   const [voicing, setVoicing] = useState("");
 
   const [lesson, setLesson] = useState("");
+  let loader = false;
 
   useEffect(() => {
     loadCategories();
@@ -58,19 +59,20 @@ function EditStudy(props) {
   };
 
   const handleCategoryChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     loadSubTopics(result._id);
   };
 
   const handleTopicChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     setLesson(result);
     loadStudy(result._id);
   };
 
   const handleStudySelect = (e, data) => {
-    console.log(data, e.target.value);
-    let result = data.find((payload) => payload.description == e.target.value);
+    console.log(data, e.target.getAttribute("id"));
+    let result = data.find((payload) => payload._id == e.target.value);
+    console.log(result);
     setSelectedStudy(result);
     setStudyNo(result.study_no);
     setDescription(result.description);
@@ -78,31 +80,35 @@ function EditStudy(props) {
     setIgbo(result.igbo);
     setPicture(result.picture);
     setVoicing(result.voicing);
-    console.log(result);
   };
 
   const handleStudyNoChange = (evt) => {
-    const newContent = evt.editor.getData();
+    const newContent = evt.target.value;
+    newContent.trim()
     setStudyNo(newContent);
   };
 
   const handleDescriptionChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setDescription(newContent);
   };
 
   const handleIgboChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setIgbo(newContent);
   };
 
   const handlePictureChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setPicture(newContent);
   };
 
   const handleVoicingChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setVoicing(newContent);
   };
 
@@ -115,7 +121,7 @@ function EditStudy(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
         body: formData,
@@ -140,7 +146,7 @@ function EditStudy(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api​/Files​/upload",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
         body: formData,
@@ -157,6 +163,7 @@ function EditStudy(props) {
   };
 
   const updateStudy = () => {
+    loader = true;
     let data = {
       study_no: studyno,
       description: description,
@@ -180,6 +187,7 @@ function EditStudy(props) {
       .catch((error) => {
         console.error("Error:", error);
       });
+      loader = false
   };
 
   const pushEdit = () => {
@@ -209,7 +217,7 @@ function EditStudy(props) {
               <select onChange={(e) => handleCategoryChange(e, categories)}>
                 <option>Select category</option>
                 {categories.map((item) => {
-                  return <option key={item.name}>{item.name}</option>;
+                  return <option value={item._id} key={item.name}>{item.name}</option>;
                 })}
               </select>
             )}
@@ -221,7 +229,7 @@ function EditStudy(props) {
                 <select onChange={(e) => handleTopicChange(e, subtopics)}>
                   <option>Select subtopic</option>
                   {subtopics.map((item) => {
-                    return <option key={item.name}>{item.name}</option>;
+                    return <option value={item._id} key={item.name}>{item.name}</option>;
                   })}
                 </select>
               </>
@@ -236,7 +244,7 @@ function EditStudy(props) {
                   <option>Select study</option>
                   {studies.map((item) => {
                     return (
-                      <option key={item.description}>{item.description}</option>
+                      <option value={item._id} key={item.description}>{item.description}</option>
                     );
                   })}
                 </select>
@@ -313,7 +321,9 @@ function EditStudy(props) {
               </div>
 
               <div className="text-center">
+                {loader == false && (
                 <button onClick={updateStudy}>UPDATE STUDY</button>
+                )}
               </div>
             </div>
           )}

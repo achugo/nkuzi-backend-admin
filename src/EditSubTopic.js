@@ -57,12 +57,12 @@ function EditSubTopic(props) {
   //   };
 
   const handleCategoryChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     loadSubTopics(result._id);
   };
 
   const handleTopicChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     setLesson(result);
     setName(result.name);
     setType(result.type);
@@ -73,21 +73,25 @@ function EditSubTopic(props) {
 
   const handleNameChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setName(newContent);
   };
 
   const handleTypeChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setType(newContent);
   };
 
   const handleFormChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setForm(newContent);
   };
 
   const handlePremiumContentChange = (evt) => {
     const newContent = evt.editor.getData();
+    newContent.trim()
     setPremiumContent(newContent);
   };
 
@@ -144,7 +148,7 @@ function EditSubTopic(props) {
               <select onChange={(e) => handleCategoryChange(e, categories)}>
                 <option>Select category</option>
                 {categories.map((item) => {
-                  return <option key={item.name}>{item.name}</option>;
+                  return <option value={item._id} key={item.name}>{item.name}</option>;
                 })}
               </select>
             )}
@@ -156,7 +160,7 @@ function EditSubTopic(props) {
                 <select onChange={(e) => handleTopicChange(e, subtopics)}>
                   <option>Select subtopic</option>
                   {subtopics.map((item) => {
-                    return <option key={item.name}>{item.name}</option>;
+                    return <option value={item._id} key={item.name}>{item.name}</option>;
                   })}
                 </select>
               </>

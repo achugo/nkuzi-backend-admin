@@ -109,7 +109,7 @@ function AddStudy(props) {
               <select onChange={(e) => handleCategoryChange(e, categories)}>
                 <option>Select category</option>
                 {categories.map((item) => {
-                  return <option key={item.name}>{item.name}</option>;
+                  return <option value={item._id} key={item.name}>{item.name}</option>;
                 })}
               </select>
             )}
@@ -132,7 +132,7 @@ function AddStudy(props) {
                 <select onChange={(e) => handleTopicChange(e, subtopics)}>
                   <option>Select subtopic</option>
                   {subtopics.map((item) => {
-                    return <option key={item.name}>{item.name}</option>;
+                    return <option value={item._id} key={item.name}>{item.name}</option>;
                   })}
                 </select>
               </>
@@ -148,7 +148,7 @@ function AddStudy(props) {
                   <option>Select study</option>
                   {studies.map((item) => {
                     return (
-                      <option key={item.description}>{item.description}</option>
+                      <option value={item._id} key={item.description}>{item.description}</option>
                     );
                   })}
                 </select>

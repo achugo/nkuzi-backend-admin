@@ -53,19 +53,19 @@ function EditQuestion(props) {
   };
 
   const handleCategoryChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     loadSubTopics(result._id);
   };
 
   const handleTopicChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     setLesson(result);
     loadStudy(result._id);
   };
 
   const handleStudySelect = (e, data) => {
     console.log(data, e.target.value);
-    let result = data.find((payload) => payload.description == e.target.value);
+    let result = data.find((payload) => payload._id == e.target.value);
     setSelectedStudy(result);
     console.log(result);
   };
@@ -190,7 +190,7 @@ function EditQuestion(props) {
               <select onChange={(e) => handleCategoryChange(e, categories)}>
                 <option>Select category</option>
                 {categories.map((item) => {
-                  return <option key={item.name}>{item.name}</option>;
+                  return <option value={item._id} key={item.name}>{item.name}</option>;
                 })}
               </select>
             )}
@@ -202,7 +202,7 @@ function EditQuestion(props) {
                 <select onChange={(e) => handleTopicChange(e, subtopics)}>
                   <option>Select subtopic</option>
                   {subtopics.map((item) => {
-                    return <option key={item.name}>{item.name}</option>;
+                    return <option value={item._id} key={item.name}>{item.name}</option>;
                   })}
                 </select>
               </>
@@ -218,7 +218,7 @@ function EditQuestion(props) {
                   <option>Select study</option>
                   {studies.map((item) => {
                     return (
-                      <option key={item.description}>{item.description}</option>
+                      <option value={item._id} key={item.description}>{item.description}</option>
                     );
                   })}
                 </select>
