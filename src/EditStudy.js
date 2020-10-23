@@ -131,9 +131,11 @@ function EditStudy(props) {
       .then((result) => {
         console.log("Success:", result);
         setPicture("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("Image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error updating Image");
       });
   };
 
@@ -156,9 +158,11 @@ function EditStudy(props) {
       .then((result) => {
         console.log("Success:", result);
         setVoicing("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("audio update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating audio");
       });
   };
 
@@ -186,6 +190,7 @@ function EditStudy(props) {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error updating Study");
       });
       loader = false
   };

@@ -118,6 +118,7 @@ function EditSubTopic(props) {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Sub study");
       });
   };
 

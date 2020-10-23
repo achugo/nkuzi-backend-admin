@@ -149,9 +149,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setAudioCore("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("audio update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, study update unsuccessful");
       });
   };
 
@@ -174,9 +176,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setAudioUrl("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("audio update unsuccessful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Audio");
       });
   };
 
@@ -199,9 +203,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setImgUrl("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Image");
       });
   };
 
@@ -226,9 +232,11 @@ function UpdateQuestion() {
         setOption2Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
+        alert("Audio Updated Successfully");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Audio");
       });
   };
 
@@ -251,9 +259,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption2img("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, study update unsuccessful");
       });
   };
 
@@ -278,9 +288,11 @@ function UpdateQuestion() {
         setOption3Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
+        alert("audio update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, audio update unsuccessful");
       });
   };
 
@@ -303,9 +315,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption3img("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, image update unsuccessful");
       });
   };
 
@@ -330,9 +344,11 @@ function UpdateQuestion() {
         setOption4Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
+        alert("audio update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, audio update unsuccessful");
       });
   };
 
@@ -355,9 +371,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption4img("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, image update unsuccessful");
       });
   };
 
@@ -479,6 +497,7 @@ function UpdateQuestion() {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("error!, question update unsuccessful");
       });
   };
 

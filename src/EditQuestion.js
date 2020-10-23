@@ -102,6 +102,7 @@ function EditQuestion(props) {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Audio");
       });
   };
 
@@ -127,6 +128,7 @@ function EditQuestion(props) {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Audio");
       });
   };
 
@@ -154,6 +156,7 @@ function EditQuestion(props) {
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("Error Updating Audio");
       });
   };
 
