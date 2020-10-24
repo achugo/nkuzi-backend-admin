@@ -37,11 +37,48 @@ function UpdateQuestion() {
 
   const route = useRouteMatch();
 
+  let audio1 = document.getElementById('ad1');
+  let audio2 = document.getElementById('ad2');
+  let audio3 = document.getElementById('ad3');
+  let audio4 = document.getElementById('ad4');
+  let audio5 = document.getElementById('ad5');
+
   useEffect(() => {
     setSelectedStudy(JSON.parse(localStorage.getItem("data__")));
     setLesson(JSON.parse(localStorage.getItem("lesson__")));
     loadQuestion();
   }, []);
+  
+  useEffect (() => {
+    if(audio1 != null) {
+        audio1.load()
+      }
+  }, [audioCore])
+
+  useEffect (() => {
+    if(audio2 != null) {
+        audio2.load()
+      }
+  }, [audioUrl])
+ 
+
+  useEffect (() => {
+    if(audio3 != null) {
+        audio3.load()
+      }
+  }, [audioUrlOption2])
+
+  useEffect (() => {
+    if(audio4 != null) {
+        audio4.load()
+      }
+  }, [audioUrlOption3])
+  
+  useEffect (() => {
+    if(audio5 != null) {
+        audio5.load()
+      }
+  }, [audioUrlOption4])
 
   const onBlur = (evt) => {
     console.log("onBlur event called with event info: ", evt);
@@ -544,7 +581,7 @@ function UpdateQuestion() {
                     onChange={(e) => uploadAudioForAnswerIguess(e)}
                   />
                   {audioCore && (
-                    <audio controls>
+                    <audio id="ad1" controls>
                       <source src={audioCore} type="audio/mp3" />
                     </audio>
                   )}
@@ -631,7 +668,7 @@ function UpdateQuestion() {
                             onChange={(e) => uploadAudioForOption1(e)}
                           />
                           {audioUrl && (
-                            <audio controls>
+                            <audio controls id="ad2">
                               <source src={audioUrl} type="audio/mp3" />
                             </audio>
                           )}
@@ -678,7 +715,7 @@ function UpdateQuestion() {
                             onChange={(e) => uploadAudioForOption2(e)}
                           />
                           {audioUrlOption2 && (
-                            <audio controls>
+                            <audio controls id="ad3">
                               <source src={audioUrlOption2} type="audio/mp3" />
                             </audio>
                           )}
@@ -726,7 +763,7 @@ function UpdateQuestion() {
                             onChange={(e) => uploadAudioForOption3(e)}
                           />
                           {audioUrlOption3 && (
-                            <audio controls>
+                            <audio controls id="ad4">
                               <source src={audioUrlOption3} type="audio/mp3" />
                             </audio>
                           )}
@@ -774,7 +811,7 @@ function UpdateQuestion() {
                             onChange={(e) => uploadAudioForOption4(e)}
                           />
                           {audioUrlOption4 && (
-                            <audio controls>
+                            <audio controls id="ad5">
                               <source src={audioUrlOption4} type="audio/mp3" />
                             </audio>
                           )}

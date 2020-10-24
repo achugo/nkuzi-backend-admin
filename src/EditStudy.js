@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "./style.css";
@@ -20,9 +20,17 @@ function EditStudy(props) {
   const [lesson, setLesson] = useState("");
   let loader = false;
 
+  let audio = document.getElementById('ad');
   useEffect(() => {
-    loadCategories();
+      loadCategories();
   }, []);
+
+  useEffect (() => {
+    if(audio != null) {
+        audio.load()
+      }
+  }, [voicing])
+  
   const onBlur = (evt) => {
     console.log("onBlur event called with event info: ", evt);
   };
@@ -319,7 +327,8 @@ function EditStudy(props) {
                 <label>Voicing</label>
                 <input type="file" onChange={(e) => uploadAudio(e)} />
                 {voicing && (
-                  <audio controls>
+                  // <audio ref="audio_tag" id="ad" src={voicing} controls />
+                  <audio id="ad" controls>
                     <source src={voicing} />
                   </audio>
                 )}
