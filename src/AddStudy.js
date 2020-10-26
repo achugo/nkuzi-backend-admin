@@ -5,6 +5,7 @@ import "./style.css";
 import CKEditor from "react-ckeditor-component";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import TextEditor from "./TextEditor";
 
 function AddStudy(props) {
   const [categories, setCategories] = useState(null);
@@ -47,8 +48,8 @@ function AddStudy(props) {
   };
 
   const handleNewCategoryChange = (evt) => {
-    const newContent = evt.editor.getData();
-    setNewCaterogy(newContent);
+    //const newContent = evt.editor.getData();
+    setNewCaterogy(evt);
   };
 
   const handleCategoryChange = (e, data) => {
@@ -114,15 +115,7 @@ function AddStudy(props) {
               </select>
             )}
             <label>Add Category</label>
-            <CKEditor
-              activeClass="p10"
-              content={newCategory}
-              events={{
-                blur: onBlur,
-                afterPaste: afterPaste,
-                change: handleNewCategoryChange,
-              }}
-            />
+            <TextEditor value={newCategory} index='first' handleChange={(content) => handleNewCategoryChange(content)} />
             <button onClick={addCategory}>Add Category</button>
           </div>
           <div>

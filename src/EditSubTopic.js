@@ -5,6 +5,7 @@ import "./style.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import CKEditor from "react-ckeditor-component";
+import TextEditor from "./TextEditor";
 
 function EditSubTopic(props) {
   const [categories, setCategories] = useState(null);
@@ -72,27 +73,27 @@ function EditSubTopic(props) {
   };
 
   const handleNameChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setName(newContent);
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setName(evt);
   };
 
   const handleTypeChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setType(newContent);
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setType(evt);
   };
 
   const handleFormChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setForm(newContent);
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setForm(evt);
   };
 
   const handlePremiumContentChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setPremiumContent(newContent);
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setPremiumContent(evt);
   };
 
   const updateLesson = () => {
@@ -173,54 +174,23 @@ function EditSubTopic(props) {
             <div className="row">
               <div className="col-md-6 align__left ">
                 <label>Name</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={name}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handleNameChange,
-                  }}
-                />
+                <TextEditor value={name} index='first' handleChange={(content) => handleNameChange(content)} />
               </div>
 
               <div className="col-md-6 align__left ">
                 <label>Type</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={type}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handleTypeChange,
-                  }}
-                />
+                <TextEditor value={type} index='second' handleChange={(content) => handleTypeChange(content)} />
+                
               </div>
 
               <div className="col-md-6 align__left ">
                 <label>Form</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={form}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handleFormChange,
-                  }}
-                />
+                <TextEditor value={form} index='third' handleChange={(content) => handleFormChange(content)} />
               </div>
 
               <div className="col-md-6 align__left ">
                 <label>Premium Content</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={premium_content == true ? "true" : "false"}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handlePremiumContentChange,
-                  }}
-                />
+                <TextEditor value={premium_content == true ? "true" : "false"} index='fourth' handleChange={(content) => handlePremiumContentChange(content)} />
               </div>
 
               <div className="text-center">

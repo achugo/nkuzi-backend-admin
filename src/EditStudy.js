@@ -5,6 +5,8 @@ import "./style.css";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import CKEditor from "react-ckeditor-component";
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import TextEditor from "./TextEditor";
 
 function EditStudy(props) {
   const [categories, setCategories] = useState(null);
@@ -91,21 +93,22 @@ function EditStudy(props) {
   };
 
   const handleStudyNoChange = (evt) => {
-    const newContent = evt.target.value;
-    newContent.trim()
-    setStudyNo(newContent);
+    // const newContent = evt.target.value;
+    // newContent.trim()
+    setStudyNo(evt);
   };
 
   const handleDescriptionChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setDescription(newContent);
+    console.log({evt})
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setDescription(evt);
   };
 
   const handleIgboChange = (evt) => {
-    const newContent = evt.editor.getData();
-    newContent.trim()
-    setIgbo(newContent);
+    // const newContent = evt.editor.getData();
+    // newContent.trim()
+    setIgbo(evt);
   };
 
   const handlePictureChange = (evt) => {
@@ -291,30 +294,16 @@ function EditStudy(props) {
                 {/* /> */}
               </div>
 
+
               <div className="col-md-6 align__left ">
                 <label>Description</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={description}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handleDescriptionChange,
-                  }}
-                />
+                <TextEditor  value={description} index='first' handleChange={(content) => handleDescriptionChange(content)} />
               </div>
 
               <div className="col-md-6 align__left ">
                 <label>Igbo</label>
-                <CKEditor
-                  activeClass="p10"
-                  content={igbo}
-                  events={{
-                    blur: onBlur,
-                    afterPaste: afterPaste,
-                    change: handleIgboChange,
-                  }}
-                />
+                <TextEditor value={igbo} index='second' handleChange={(content) => handleIgboChange(content)} />
+                
               </div>
 
               <div className="col-md-6 align__left ">

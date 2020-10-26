@@ -4,6 +4,7 @@ import "./App.css";
 import "./style.css";
 import axios from "axios";
 import CKEditor from "react-ckeditor-component";
+import TextEditor from "./TextEditor";
 
 // import ReactSummernote from "react-summernote";
 // import "react-summernote/dist/react-summernote.css"; // import styles
@@ -163,14 +164,19 @@ function AddQuestion(props) {
   };
 
   const handleCategoryChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
-    loadSubTopics(result._id);
+    //let result = data.find((payload) => payload.name == e.target.value);
+    if(e.target.value){
+      loadSubTopics(e.target.value);
+    }
   };
 
   const handleTopicChange = (e, data) => {
-    let result = data.find((payload) => payload.name == e.target.value);
-    setLesson(result);
-    loadStudy(result._id);
+    // let result = data.find((payload) => payload.name == e.target.value);
+    // setLesson(result);
+    if(e.target.value){
+      loadStudy(e.target.value);
+    }
+    
   };
 
   const handleStudySelect = (e, data) => {
@@ -437,28 +443,28 @@ function AddQuestion(props) {
     setCorrectAnswer(newContent);
   };
   const handleQuestionChange = (evt) => {
-    const newContent = evt.editor.getData();
-    setQuestion(newContent);
+    //const newContent = evt.editor.getData();
+    setQuestion(evt);
   };
 
   const handleOption1Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption1(newContent);
+    //const newContent = evt.editor.getData();
+    setOption1(evt);
   };
 
   const handleOption2Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption2(newContent);
+    //const newContent = evt.editor.getData();
+    setOption2(evt);
   };
 
   const handleOption3Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption3(newContent);
+    //const newContent = evt.editor.getData();
+    setOption3(evt);
   };
 
   const handleOption4Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption4(newContent);
+    //const newContent = evt.editor.getData();
+    setOption4(evt);
   };
 
   const handleMatchQuestion = (e) => {
@@ -591,6 +597,9 @@ function AddQuestion(props) {
         <button onClick={pushSubTopic}>Edit Sub Topic</button>
         <button onClick={pushStudy}>Edit Study</button>
       </div>
+      
+      
+
 
       <div className="row">
         <div className="col-md-4 align__left">
@@ -628,7 +637,9 @@ function AddQuestion(props) {
                   <option>Select study</option>
                   {studies.map((item) => {
                     return (
-                      <option value={item._id} key={item.description}>{item.description}</option>
+                      <option value={item._id} key={item.description} dangerouslySetInnerHTML={{
+                        __html: item.description,
+                      }}></option>
                     );
                   })}
                 </select>
@@ -698,15 +709,7 @@ function AddQuestion(props) {
                   </div>
                   <div className="col-md-5">
                     <label style={{ display: "block" }}>Enter Question</label>
-                    <CKEditor
-                      activeClass="p10"
-                      content={question}
-                      events={{
-                        blur: onBlur,
-                        afterPaste: afterPaste,
-                        change: handleQuestionChange,
-                      }}
-                    />
+                    <TextEditor value={question} index='first' handleChange={(content) => handleQuestionChange(content)} />
                     {/* <textarea onChange={(e) => handleQuestionChange(e)} /> */}
                   </div>
                 </div>
@@ -717,15 +720,8 @@ function AddQuestion(props) {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label>option1</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option1}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption1Change,
-                          }}
-                        />
+                        <TextEditor value={option1} index='second' handleChange={(content) => handleOption1Change(content)} />
+                        
                         {/* <textarea
                           onChange={(e) => handleOption1Change(e)}
                           placeholder="option 1"
@@ -763,15 +759,8 @@ function AddQuestion(props) {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label>option2</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option2}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption2Change,
-                          }}
-                        />
+                        <TextEditor value={option2} index='third' handleChange={(content) => handleOption2Change(content)} />
+                        
                         {/* <textarea
                           onChange={(e) => handleOption2Change(e)}
                           placeholder="option 2"
@@ -810,15 +799,8 @@ function AddQuestion(props) {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label>option 3</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option3}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption3Change,
-                          }}
-                        />
+                        <TextEditor value={option3} index='fourth' handleChange={(content) => handleOption3Change(content)} />
+                      
                         {/* <textarea
                           onChange={(e) => handleOption3Change(e)}
                           placeholder="option 3"
@@ -857,15 +839,7 @@ function AddQuestion(props) {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label>option 4</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option4}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption4Change,
-                          }}
-                        />
+                        <TextEditor value={option4} index='fifth' handleChange={(content) => handleOption4Change(content)} />
                         {/* <textarea
                           onChange={(e) => handleOption4Change(e)}
                           placeholder="option 4"
