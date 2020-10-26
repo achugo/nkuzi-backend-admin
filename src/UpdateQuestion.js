@@ -5,6 +5,7 @@ import "./style.css";
 import axios from "axios";
 import CKEditor from "react-ckeditor-component";
 import { useRouteMatch } from "react-router-dom";
+import TextEditor from "./TextEditor";
 
 //number, match
 //things in our surrounding, sentence
@@ -417,32 +418,32 @@ function UpdateQuestion() {
   };
 
   const handleCorrectOption = (evt) => {
-    const newContent = evt.editor.getData();
-    setCorrectAnswer(newContent);
+    //const newContent = evt.editor.getData();
+    setCorrectAnswer(evt);
   };
   const handleQuestionChange = (evt) => {
-    const newContent = evt.editor.getData();
-    setQuestion(newContent);
+    //const newContent = evt.editor.getData();
+    setQuestion(evt);
   };
 
   const handleOption1Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption1(newContent);
+    //const newContent = evt.editor.getData();
+    setOption1(evt);
   };
 
   const handleOption2Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption2(newContent);
+    //const newContent = evt.editor.getData();
+    setOption2(evt);
   };
 
   const handleOption3Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption3(newContent);
+    //const newContent = evt.editor.getData();
+    setOption3(evt);
   };
 
   const handleOption4Change = (evt) => {
-    const newContent = evt.editor.getData();
-    setOption4(newContent);
+    //const newContent = evt.editor.getData();
+    setOption4(evt);
   };
 
   const handleMatchQuestion = (e) => {
@@ -555,16 +556,7 @@ function UpdateQuestion() {
                 <div className="row">
                   <div className="col-md-5">
                     <label style={{ display: "block" }}>Enter Question</label>
-
-                    <CKEditor
-                      activeClass="p10"
-                      content={question}
-                      events={{
-                        blur: onBlur,
-                        afterPaste: afterPaste,
-                        change: handleQuestionChange,
-                      }}
-                    />
+                    <TextEditor value={question} index='zero' handleChange={(content) => handleQuestionChange(content)} />
                     {/* <textarea
                       value={question}
                       onChange={(e) => handleQuestionChange(e)}
@@ -591,15 +583,7 @@ function UpdateQuestion() {
                   <>
                     <div className="section__wrap">
                       <label> Match question</label>
-                      <CKEditor
-                        activeClass="p10"
-                        content={question_match}
-                        events={{
-                          blur: onBlur,
-                          afterPaste: afterPaste,
-                          change: handleMatchQuestion,
-                        }}
-                      />
+                      <TextEditor value={question_match} index='first' handleChange={(content) => handleMatchQuestion(content)} />
                       {/* <textarea
                         value={question_match}
                         onChange={(e) => handleMatchQuestion(e)}
@@ -622,15 +606,8 @@ function UpdateQuestion() {
                 {optionTypeVal.length > 0 && optionTypeVal != "sentence" && (
                   <div className="section__wrap">
                     <label> Enter correct answer</label>
-                    <CKEditor
-                      activeClass="p10"
-                      content={correctAnswer}
-                      events={{
-                        blur: onBlur,
-                        afterPaste: afterPaste,
-                        change: handleCorrectOption,
-                      }}
-                    />
+                    <TextEditor value={correctAnswer} index='second' handleChange={(content) => handleCorrectOption(content)} />
+                    
                     {/* <textarea
                       value={correctAnswer}
                       onChange={(e) => handleCorrectOption(e)}
@@ -645,15 +622,7 @@ function UpdateQuestion() {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label> Option 1</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option1}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption1Change,
-                          }}
-                        />
+                        <TextEditor value={option1} index='third' handleChange={(content) => handleOption1Change(content)} />
                         {/* <textarea
                           value={option1}
                           onChange={(e) => handleOption1Change(e)}
@@ -692,15 +661,7 @@ function UpdateQuestion() {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label> Option 2</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option2}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption2Change,
-                          }}
-                        />
+                        <TextEditor value={option2} index='fourth' handleChange={(content) => handleOption2Change(content)} />
                         {/* <textarea
                           value={option2}
                           onChange={(e) => handleOption2Change(e)}
@@ -740,15 +701,8 @@ function UpdateQuestion() {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label> Option 3</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option3}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption3Change,
-                          }}
-                        />
+                        <TextEditor value={option3} index='fifth' handleChange={(content) => handleOption3Change(content)} />
+                        
                         {/* <textarea
                           value={option3}
                           onChange={(e) => handleOption3Change(e)}
@@ -788,15 +742,7 @@ function UpdateQuestion() {
                     <div className="row">
                       <div className="col-md-6 align__left ">
                         <label> Option 4</label>
-                        <CKEditor
-                          activeClass="p10"
-                          content={option4}
-                          events={{
-                            blur: onBlur,
-                            afterPaste: afterPaste,
-                            change: handleOption4Change,
-                          }}
-                        />
+                        <TextEditor value={option4} index='six' handleChange={(content) => handleOption4Change(content)} />
                         {/* <textarea
                           value={option4}
                           onChange={(e) => handleOption4Change(e)}
