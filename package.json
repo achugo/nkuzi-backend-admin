@@ -9,12 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
-<<<<<<< HEAD
-    "ckeditor4-react": "^1.2.0",
-=======
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
->>>>>>> d317488f7bbab16b1ef593c150be25962bd04bc4
     "react": "^16.13.1",
     "react-ckeditor-component": "^1.1.0",
     "react-dom": "^16.13.1",
