@@ -33,6 +33,7 @@ function UpdateQuestion() {
   const [readyToSend, setReadyToSend] = useState(false);
   const [lesson, setLesson] = useState("");
   const [question_match, setQuestionMatch] = useState("");
+  const [question_match_image, setQuestionMatchImage] = useState("");
   const [match_order, setMatchOrder] = useState("");
   const [correct_order, setCorrectMatchOrder] = useState("");
 
@@ -126,6 +127,7 @@ function UpdateQuestion() {
             setOption4(question.optionIV);
             setQuestion(question.question);
             setQuestionMatch(question.matchQuestion);
+            setQuestionMatchImage(question.matchQuestionImage);
             setAudioUrl(question.optionIaudio);
             setOption2Audio(question.optionIIaudio);
             setOption3Audio(question.optionIIIaudio);
@@ -140,7 +142,7 @@ function UpdateQuestion() {
             setQuestion(question.question);
           } else {
             setAudioCore(question.audioUrl);
-            setOptionTypeVal("ordinary");
+            setOptionTypeVal("toIgbo");
             setQuestion(question.question);
             setImgUrl(question.optionAImage);
             setOption2img(question.optionBImage);
@@ -390,6 +392,33 @@ function UpdateQuestion() {
       });
   };
 
+  const uploadQuestionMatchImage = (e) => {
+    let upload = e.target.files[0];
+    console.log(upload);
+
+    const formData = new FormData();
+
+    formData.append("file", upload);
+
+    fetch(
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setOption4img("https://infomall-001-site1.etempurl.com/" + result.name);
+        alert("image update successful");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("error!, image update unsuccessful");
+      });
+  };
+ 
   const uploadImageForOption4 = (e) => {
     let upload = e.target.files[0];
     console.log(upload);
@@ -452,9 +481,8 @@ function UpdateQuestion() {
 
   const postQuestion = () => {
     let data = {};
-    if (optionTypeVal == "match1") {
+    if (optionTypeVal == "toEnglish") {
       data = {
-        optionType: optionTypeVal,
         question: question,
         audioUrl: audioCore,
         correctOption: correctAnswer,
@@ -468,13 +496,12 @@ function UpdateQuestion() {
         option4: option4,
         type: "toEnglish",
         lesson: lesson._id,
-        study: selectedStudy._id,
       };
-    } else if (optionTypeVal == "match2") {
+    } else if (optionTypeVal == "match") {
       data = {
-        optionType: optionTypeVal,
-        question: question_match,
-        matchQuestion: optionTypeVal,
+        question: question,
+        matchQuestion: question_match,
+        matchQuestionImage: question_match_image,
         audioUrl: audioCore,
         correctOption: correctAnswer,
         optionIaudio: audioUrl,
@@ -487,11 +514,9 @@ function UpdateQuestion() {
         optionIV: option4,
         type: "match",
         lesson: lesson._id,
-        study: selectedStudy._id,
       };
     } else if (optionTypeVal == "sentence") {
       data = {
-        optionType: optionTypeVal,
         question: question,
         mainQuestion: question_match,
         audioUrl: audioCore,
@@ -499,11 +524,9 @@ function UpdateQuestion() {
         words: match_order,
         type: "sentence",
         lesson: lesson._id,
-        study: selectedStudy._id,
       };
     } else {
       data = {
-        optionType: optionTypeVal,
         question: question,
         audioUrl: audioCore,
         optionA: option1,
@@ -517,7 +540,6 @@ function UpdateQuestion() {
         optionDImage: imgUrlOption4,
         correctOption: correctAnswer,
         lesson: lesson._id,
-        study: selectedStudy._id,
       };
     }
 
@@ -579,6 +601,19 @@ function UpdateQuestion() {
                   )}
                 </div>
 
+                {(optionTypeVal == "match") && (
+                  <>
+                    <div className="section__wrap">
+                      <label>Upload question image</label>
+                      <input
+                        type="file"
+                        onChange={(e) => uploadQuestionMatchImage(e)}
+                      />
+                      {question_match_image && <img src={question_match_image} alt="img uploaded" />}
+                    </div>
+                  </>
+                )}
+                
                 {(optionTypeVal == "match" || optionTypeVal == "sentence") && (
                   <>
                     <div className="section__wrap">
@@ -629,7 +664,7 @@ function UpdateQuestion() {
                           placeholder="option 1"
                         /> */}
                       </div>
-                      {optionTypeVal != "ordinary" && (
+                      {optionTypeVal != "toIgbo" && (
                         <div className="col-md-3 align__left">
                           <label>Audio</label>
                           <input
@@ -644,7 +679,7 @@ function UpdateQuestion() {
                         </div>
                       )}
 
-                      {optionTypeVal == "ordinary" && (
+                      {optionTypeVal == "toIgbo" && (
                         <div className="col-md-3 align__left ">
                           <label>image</label>
                           <input
@@ -668,7 +703,7 @@ function UpdateQuestion() {
                           placeholder="option 2"
                         /> */}
                       </div>
-                      {optionTypeVal != "ordinary" && (
+                      {optionTypeVal != "toIgbo" && (
                         <div className="col-md-3 align__left">
                           <label>Audio</label>
                           <input
@@ -683,7 +718,7 @@ function UpdateQuestion() {
                         </div>
                       )}
 
-                      {optionTypeVal == "ordinary" && (
+                      {optionTypeVal == "toIgbo" && (
                         <div className="col-md-3 align__left ">
                           <label>image</label>
                           <input
@@ -709,7 +744,7 @@ function UpdateQuestion() {
                           placeholder="option 3"
                         /> */}
                       </div>
-                      {optionTypeVal != "ordinary" && (
+                      {optionTypeVal != "toIgbo" && (
                         <div className="col-md-3 align__left">
                           <label>Audio</label>
                           <input
@@ -724,7 +759,7 @@ function UpdateQuestion() {
                         </div>
                       )}
 
-                      {optionTypeVal == "ordinary" && (
+                      {optionTypeVal == "toIgbo" && (
                         <div className="col-md-3 align__left ">
                           <label>image</label>
                           <input
@@ -749,7 +784,7 @@ function UpdateQuestion() {
                           placeholder="option 4"
                         /> */}
                       </div>
-                      {optionTypeVal != "ordinary" && (
+                      {optionTypeVal != "toIgbo" && (
                         <div className="col-md-3 align__left">
                           <label>Audio</label>
                           <input
@@ -764,7 +799,7 @@ function UpdateQuestion() {
                         </div>
                       )}
 
-                      {optionTypeVal == "ordinary" && (
+                      {optionTypeVal == "toIgbo" && (
                         <div className="col-md-3 align__left ">
                           <label>image</label>
                           <input

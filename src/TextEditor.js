@@ -77,7 +77,8 @@ class TextEditor extends React.Component {
                         ['table', ['table']],
                         ['insert', ['link', 'picture', 'video']],
                         ['view', ['fullscreen', 'codeview']]
-                    ]
+                    ],
+                    fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36', '48' , '64', '82', '150']
                 }}
                 value={this.props.value}
                 onChange={this.onChange}
