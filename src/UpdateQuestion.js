@@ -108,7 +108,7 @@ function UpdateQuestion() {
           setOptionTypeVal(question.type);
           setSelectedQuestion(question);
           if (question.type == "toEnglish") {
-            setOptionTypeVal("match1");
+            setOptionTypeVal("toEnglish");
             setOption1(question.option1);
             setOption2(question.option2);
             setOption3(question.option3);
