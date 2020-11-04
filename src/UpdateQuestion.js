@@ -36,6 +36,7 @@ function UpdateQuestion() {
   const [question_match_image, setQuestionMatchImage] = useState("");
   const [match_order, setMatchOrder] = useState("");
   const [correct_order, setCorrectMatchOrder] = useState("");
+  const [message, setMessage] = useState("");
 
   const route = useRouteMatch();
 
@@ -189,11 +190,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setAudioCore("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("audio update successful");
+        setMessage("question_audio update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, study update unsuccessful");
+        setMessage("error!, question_audio update unsuccessful");
       });
   };
 
@@ -216,11 +217,13 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setAudioUrl("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("audio update unsuccessful");
+        // alert("audio update unsuccessful");
+        setMessage("audio1 update unsuccessful")
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Error Updating Audio");
+        // alert("Error Updating Audio");
+        setMessage("error updating audio1")
       });
   };
 
@@ -243,11 +246,13 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setImgUrl("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("image update successful");
+        // alert("image update successful");
+        setMessage("image1 update successful")
       })
       .catch((error) => {
         console.error("Error:", error);
         alert("Error Updating Image");
+        setMessage("error updating image1")
       });
   };
 
@@ -272,11 +277,13 @@ function UpdateQuestion() {
         setOption2Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
-        alert("Audio Updated Successfully");
+        // alert("Audio Updated Successfully");
+        setMessage("audio2 updated successfully");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Error Updating Audio");
+        // alert("Error Updating Audio");
+        setMessage("error updating audio2");
       });
   };
 
@@ -299,11 +306,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption2img("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("image update successful");
+        setMessage("image2 update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, study update unsuccessful");
+        setMessage("error!, image2 update unsuccessful");
       });
   };
 
@@ -328,11 +335,11 @@ function UpdateQuestion() {
         setOption3Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
-        alert("audio update successful");
+        setMessage("audio3 update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, audio update unsuccessful");
+        setMessage("error!, audio3 update unsuccessful");
       });
   };
 
@@ -355,11 +362,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption3img("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("image update successful");
+        setMessage("image3 update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, image update unsuccessful");
+        setMessage("error!, image3 update unsuccessful");
       });
   };
 
@@ -384,11 +391,11 @@ function UpdateQuestion() {
         setOption4Audio(
           "https://infomall-001-site1.etempurl.com/" + result.name
         );
-        alert("audio update successful");
+        setMessage("audio4 update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, audio update unsuccessful");
+        setMessage("error!, audio4 update unsuccessful");
       });
   };
 
@@ -410,12 +417,12 @@ function UpdateQuestion() {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setOption4img("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("image update successful");
+        setQuestionMatchImage("https://infomall-001-site1.etempurl.com/" + result.name);
+        setMessage("question_match_image update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, image update unsuccessful");
+        setMessage("error!, question_match_image update unsuccessful");
       });
   };
  
@@ -438,11 +445,11 @@ function UpdateQuestion() {
       .then((result) => {
         console.log("Success:", result);
         setOption4img("https://infomall-001-site1.etempurl.com/" + result.name);
-        alert("image update successful");
+        setMessage("image4 update successful");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("error!, image update unsuccessful");
+        setMessage("error!, image4 update unsuccessful");
       });
   };
 
@@ -599,6 +606,7 @@ function UpdateQuestion() {
                       <source src={audioCore} type="audio/mp3" />
                     </audio>
                   )}
+                  {message.match(/question_audio/) == 'question_audio' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                 </div>
 
                 {(optionTypeVal == "match") && (
@@ -610,6 +618,7 @@ function UpdateQuestion() {
                         onChange={(e) => uploadQuestionMatchImage(e)}
                       />
                       {question_match_image && <img src={question_match_image} alt="img uploaded" />}
+                      {message.match(/question_match_image/) == 'question_match_image' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                     </div>
                   </>
                 )}
@@ -676,6 +685,7 @@ function UpdateQuestion() {
                               <source src={audioUrl} type="audio/mp3" />
                             </audio>
                           )}
+                          {message.match(/audio1/) == 'audio1' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
 
@@ -687,6 +697,7 @@ function UpdateQuestion() {
                             onChange={(e) => uploadImageForOption1(e)}
                           />
                           {imgUrl && <img src={imgUrl} alt="img uploaded" />}
+                          {message.match(/image1/) == 'image1' && <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
                     </div>
@@ -715,6 +726,7 @@ function UpdateQuestion() {
                               <source src={audioUrlOption2} type="audio/mp3" />
                             </audio>
                           )}
+                          {message.match(/audio2/) == 'audio2' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
 
@@ -728,6 +740,7 @@ function UpdateQuestion() {
                           {imgUrlOption2 && (
                             <img src={imgUrlOption2} alt="img uploaded" />
                           )}
+                          {message.match(/image2/) == 'image2' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
                     </div>
@@ -756,6 +769,7 @@ function UpdateQuestion() {
                               <source src={audioUrlOption3} type="audio/mp3" />
                             </audio>
                           )}
+                          {message.match(/audio3/) == 'audio3' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
 
@@ -769,6 +783,7 @@ function UpdateQuestion() {
                           {imgUrlOption3 && (
                             <img src={imgUrlOption3} alt="img uploaded" />
                           )}
+                          {message.match(/image3/) == 'image3' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
                     </div>
@@ -796,6 +811,7 @@ function UpdateQuestion() {
                               <source src={audioUrlOption4} type="audio/mp3" />
                             </audio>
                           )}
+                          {message.match(/audio4/) == 'audio4' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
 
@@ -809,6 +825,7 @@ function UpdateQuestion() {
                           {imgUrlOption4 && (
                             <img src={imgUrlOption4} alt="img uploaded" />
                           )}
+                          {message.match(/image4/) == 'image4' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
                         </div>
                       )}
                     </div>
