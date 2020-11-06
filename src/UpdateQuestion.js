@@ -483,7 +483,7 @@ function UpdateQuestion() {
   };
 
   const handleMatchQuestion = (e) => {
-    setQuestionMatch(e.target.value);
+    setQuestionMatch(e);
   };
 
   const postQuestion = () => {
