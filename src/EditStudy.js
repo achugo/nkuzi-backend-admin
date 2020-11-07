@@ -135,15 +135,6 @@ function EditStudy(props) {
       "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: formData,
       }
     )
@@ -168,18 +159,9 @@ function EditStudy(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
+      "https://cors-anywhere.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
-        mode: 'cors-anywhere', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: formData,
       }
     )
@@ -210,7 +192,7 @@ function EditStudy(props) {
     //https://nkuziigbo.herokuapp.com/igboapp/api/test/5f4ac17d8ca10b00047d29e1
     axios({
       method: "put",
-      url: `https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
+      url: `https://cors-anywhere.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
       data: data,
     })
       .then((result) => {
