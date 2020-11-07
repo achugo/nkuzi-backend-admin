@@ -171,7 +171,7 @@ function EditStudy(props) {
       "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
-        mode: 'cors', // no-cors, *cors, same-origin
+        mode: 'cors-anywhere', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
