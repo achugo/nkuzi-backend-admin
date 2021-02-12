@@ -159,7 +159,7 @@ function EditStudy(props) {
     formData.append("file", upload);
 
     fetch(
-      "https://cors-anywhere.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
+      "https://fierce-shore-33740.herokuapp.com/https://infomall-001-site1.etempurl.com/api/Files/upload",
       {
         method: "POST",
         body: formData,
@@ -192,7 +192,7 @@ function EditStudy(props) {
     //https://nkuziigbo.herokuapp.com/igboapp/api/test/5f4ac17d8ca10b00047d29e1
     axios({
       method: "put",
-      url: `https://cors-anywhere.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
+      url: `/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
       data: data,
     })
       .then((result) => {
