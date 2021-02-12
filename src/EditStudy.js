@@ -192,7 +192,7 @@ function EditStudy(props) {
     //https://nkuziigbo.herokuapp.com/igboapp/api/test/5f4ac17d8ca10b00047d29e1
     axios({
       method: "put",
-      url: `/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
+      url: `https://fierce-shore-33740.herokuapp.com/https://nkuziigbo.herokuapp.com/igboapp/api/study/${selectedStudy._id}`,
       data: data,
     })
       .then((result) => {
