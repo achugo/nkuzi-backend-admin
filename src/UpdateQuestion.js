@@ -141,6 +141,7 @@ function UpdateQuestion() {
             setCorrectMatchOrder(question.correctSentence);
             setMatchOrder(question.words);
             setQuestion(question.question);
+            setAudioCore(question.audioUrl);
           } else {
             setAudioCore(question.audioUrl);
             setOptionTypeVal("toIgbo");
@@ -678,11 +679,11 @@ function UpdateQuestion() {
                           <label>Audio</label>
                           <input
                             type="file"
-                            onChange={(e) => uploadAudioForOption1(e)}
+                            onChange={(e) => uploadAudioForAnswerIguess(e)}
                           />
-                          {audioUrl && (
+                          {audioCore && (
                             <audio controls id="ad2">
-                              <source src={audioUrl} type="audio/mp3" />
+                              <source src={audioCore} type="audio/mp3" />
                             </audio>
                           )}
                           {message.match(/audio1/) == 'audio1' &&  <div className="alert alert-warning alert-dismissible fade show">{message} <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>}
